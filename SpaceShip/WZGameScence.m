@@ -48,7 +48,6 @@
     [self.spaceship setScale:0.3];
     __weak typeof(self) weakSelf = self;
     [self.spaceship runAction:[SKAction moveToY:100 duration:0.5] completion:^{
-        self.spaceship.position = CGPointMake(self.spaceship.position.x, 100);
         [weakSelf startGame];
     }];
     [self addNode:self.spaceship toWorldLayer:WZGameWorldLayerCharactors];
@@ -66,7 +65,7 @@
 
 - (void)startGame
 {
-
+    
 }
 
 - (void)addNode:(SKNode *)node toWorldLayer:(WZGameWorldLayer)layer
