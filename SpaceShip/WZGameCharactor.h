@@ -20,7 +20,7 @@ extern const CGFloat WZGameCharactorCollisionRadius;
 @interface WZGameCharactor : SKSpriteNode
 
 - (instancetype)initWithTexture:(SKTexture *)texture position:(CGPoint)position;
-- (void)configureGameStatus;
+- (void)configureGameCharactor;
 - (void)configurePhysicsBody;
 
 @end

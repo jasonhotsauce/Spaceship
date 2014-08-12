@@ -16,13 +16,13 @@ const CGFloat WZGameCharactorCollisionRadius = 40;
 {
     if (self = [super initWithTexture:texture]) {
         self.position = position;
-        [self configureGameStatus];
+        [self configureGameCharactor];
         [self configurePhysicsBody];
     }
     return self;
 }
 
-- (void)configureGameStatus
+- (void)configureGameCharactor
 {
     // subclass should override this
 }

@@ -45,7 +45,6 @@
     self.backgroundColor = [SKColor blackColor];
     self.scaleMode = SKSceneScaleModeAspectFit;
     self.spaceship = [[WZSpaceship alloc] initWithPosition:CGPointMake(self.size.width/2, -10)];
-    [self.spaceship setScale:0.3];
     __weak typeof(self) weakSelf = self;
     [self.spaceship runAction:[SKAction moveToY:100 duration:0.5] completion:^{
         [weakSelf startGame];

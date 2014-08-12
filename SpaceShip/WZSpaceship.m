@@ -19,10 +19,15 @@ static const CGFloat kMinMovingSpeed = 5.0;
     return [super initWithTexture:texture position:position];
 }
 
-- (void)configureGameStatus
+- (void)configureGameCharactor
 {
     self.health = 100;
     self.movingSpeed = kMinMovingSpeed;
+    fireEmitter = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"spaceship_fire" ofType:@"sks"]];
+    SKEmitterNode *fire = [[self fireEmitter] copy];
+    fire.position = CGPointMake(0, -80);
+    fire.targetNode = self;
+    [self addChild:fire];
 }
 
 - (void)configurePhysicsBody
@@ -31,5 +36,11 @@ static const CGFloat kMinMovingSpeed = 5.0;
     self.physicsBody.categoryBitMask = WZGameCharactorColliderTypeSpaceship;
     self.physicsBody.collisionBitMask = WZGameCharactorColliderTypeBullet | WZGameCharactorColliderTypeRock | WZGameCharactorColliderTypeEnemyShip;
     self.physicsBody.contactTestBitMask = WZGameCharactorColliderTypeBullet | WZGameCharactorColliderTypeRock | WZGameCharactorColliderTypeEnemyShip;
+}
+
+static SKEmitterNode *fireEmitter = nil;
+- (SKEmitterNode *)fireEmitter
+{
+    return fireEmitter;
 }
 @end

@@ -16,7 +16,6 @@
 		7FAA222D19933B8E00E280E3 /* WZAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FAA222C19933B8E00E280E3 /* WZAppDelegate.m */; };
 		7FAA223019933B8E00E280E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FAA222E19933B8E00E280E3 /* Main.storyboard */; };
 		7FAA223319933B8E00E280E3 /* WZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FAA223219933B8E00E280E3 /* WZViewController.m */; };
-		7FAA223819933B8E00E280E3 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FAA223719933B8E00E280E3 /* Spaceship.png */; };
 		7FAA223A19933B8E00E280E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FAA223919933B8E00E280E3 /* Images.xcassets */; };
 		7FAA224119933B8E00E280E3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAA224019933B8E00E280E3 /* XCTest.framework */; };
 		7FAA224219933B8E00E280E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAA221A19933B8E00E280E3 /* Foundation.framework */; };
@@ -28,6 +27,9 @@
 		7FB7D7571995FB6400E2B9D0 /* WZSpaceship.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB7D7561995FB6400E2B9D0 /* WZSpaceship.m */; };
 		7FB7D75A1995FD5600E2B9D0 /* WZGameUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB7D7591995FD5600E2B9D0 /* WZGameUtility.m */; };
 		7FB7D75D1995FE3C00E2B9D0 /* WZGameCharactor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB7D75C1995FE3C00E2B9D0 /* WZGameCharactor.m */; };
+		80C14A19199751E40067AEAE /* spaceship_fire.sks in Resources */ = {isa = PBXBuildFile; fileRef = 80C14A17199751E40067AEAE /* spaceship_fire.sks */; };
+		80C14A1A199751E40067AEAE /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C14A18199751E40067AEAE /* spark.png */; };
+		80C14A1E199767D60067AEAE /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C14A1D199767D60067AEAE /* Spaceship.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +57,6 @@
 		7FAA222F19933B8E00E280E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7FAA223119933B8E00E280E3 /* WZViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZViewController.h; sourceTree = "<group>"; };
 		7FAA223219933B8E00E280E3 /* WZViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZViewController.m; sourceTree = "<group>"; };
-		7FAA223719933B8E00E280E3 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		7FAA223919933B8E00E280E3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7FAA223F19933B8E00E280E3 /* SpaceShipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceShipTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FAA224019933B8E00E280E3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -72,6 +73,9 @@
 		7FB7D7591995FD5600E2B9D0 /* WZGameUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZGameUtility.m; sourceTree = "<group>"; };
 		7FB7D75B1995FE3C00E2B9D0 /* WZGameCharactor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZGameCharactor.h; sourceTree = "<group>"; };
 		7FB7D75C1995FE3C00E2B9D0 /* WZGameCharactor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZGameCharactor.m; sourceTree = "<group>"; };
+		80C14A17199751E40067AEAE /* spaceship_fire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = spaceship_fire.sks; sourceTree = "<group>"; };
+		80C14A18199751E40067AEAE /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		80C14A1D199767D60067AEAE /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,9 +152,11 @@
 				7FB7D7561995FB6400E2B9D0 /* WZSpaceship.m */,
 				7FB7D7581995FD5600E2B9D0 /* WZGameUtility.h */,
 				7FB7D7591995FD5600E2B9D0 /* WZGameUtility.m */,
-				7FAA223719933B8E00E280E3 /* Spaceship.png */,
+				80C14A1D199767D60067AEAE /* Spaceship.png */,
 				7FAA223919933B8E00E280E3 /* Images.xcassets */,
 				7FAA222319933B8E00E280E3 /* Supporting Files */,
+				80C14A17199751E40067AEAE /* spaceship_fire.sks */,
+				80C14A18199751E40067AEAE /* spark.png */,
 			);
 			path = SpaceShip;
 			sourceTree = "<group>";
@@ -262,9 +268,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FAA222719933B8E00E280E3 /* InfoPlist.strings in Resources */,
+				80C14A1A199751E40067AEAE /* spark.png in Resources */,
 				7FAA223A19933B8E00E280E3 /* Images.xcassets in Resources */,
-				7FAA223819933B8E00E280E3 /* Spaceship.png in Resources */,
 				7FAA223019933B8E00E280E3 /* Main.storyboard in Resources */,
+				80C14A1E199767D60067AEAE /* Spaceship.png in Resources */,
+				80C14A19199751E40067AEAE /* spaceship_fire.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
