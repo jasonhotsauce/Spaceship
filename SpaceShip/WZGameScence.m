@@ -45,12 +45,11 @@
     self.backgroundColor = [SKColor blackColor];
     self.scaleMode = SKSceneScaleModeAspectFit;
     self.spaceship = [[WZSpaceship alloc] initWithPosition:CGPointMake(self.size.width/2, -10)];
-    [self.spaceship setScale:0.3];
     __weak typeof(self) weakSelf = self;
-    [self.spaceship runAction:[SKAction moveToY:100 duration:0.5] completion:^{
-        self.spaceship.position = CGPointMake(self.spaceship.position.x, 100);
-        [weakSelf startGame];
-    }];
+//    [self.spaceship runAction:[SKAction moveToY:100 duration:0.5] completion:^{
+//        [weakSelf startGame];
+//    }];
+    [self.spaceship runAction:[SKAction sequence:@[[SKAction moveToY:500 duration:1], [SKAction moveToX:100 duration:2], [SKAction rotateByAngle:45 duration:0.3]]]];
     [self addNode:self.spaceship toWorldLayer:WZGameWorldLayerCharactors];
 }
 
