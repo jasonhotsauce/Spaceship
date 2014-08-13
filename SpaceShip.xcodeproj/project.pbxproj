@@ -27,6 +27,10 @@
 		7FB7D7571995FB6400E2B9D0 /* WZSpaceship.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB7D7561995FB6400E2B9D0 /* WZSpaceship.m */; };
 		7FB7D75A1995FD5600E2B9D0 /* WZGameUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB7D7591995FD5600E2B9D0 /* WZGameUtility.m */; };
 		7FB7D75D1995FE3C00E2B9D0 /* WZGameCharactor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB7D75C1995FE3C00E2B9D0 /* WZGameCharactor.m */; };
+		7FB7D7601999EB8E00E2B9D0 /* WZParallaxNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB7D75F1999EB8E00E2B9D0 /* WZParallaxNode.m */; };
+		7FB7D763199A0BE700E2B9D0 /* galaxy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 7FB7D762199A0BE700E2B9D0 /* galaxy.atlas */; };
+		7FB7D766199B3A6800E2B9D0 /* spaceship_bullet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7FB7D765199B3A6800E2B9D0 /* spaceship_bullet.sks */; };
+		7FB7D768199B498F00E2B9D0 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB7D767199B498F00E2B9D0 /* CoreMotion.framework */; };
 		80C14A19199751E40067AEAE /* spaceship_fire.sks in Resources */ = {isa = PBXBuildFile; fileRef = 80C14A17199751E40067AEAE /* spaceship_fire.sks */; };
 		80C14A1A199751E40067AEAE /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C14A18199751E40067AEAE /* spark.png */; };
 		80C14A1E199767D60067AEAE /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C14A1D199767D60067AEAE /* Spaceship.png */; };
@@ -73,6 +77,11 @@
 		7FB7D7591995FD5600E2B9D0 /* WZGameUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZGameUtility.m; sourceTree = "<group>"; };
 		7FB7D75B1995FE3C00E2B9D0 /* WZGameCharactor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZGameCharactor.h; sourceTree = "<group>"; };
 		7FB7D75C1995FE3C00E2B9D0 /* WZGameCharactor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZGameCharactor.m; sourceTree = "<group>"; };
+		7FB7D75E1999EB8E00E2B9D0 /* WZParallaxNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZParallaxNode.h; sourceTree = "<group>"; };
+		7FB7D75F1999EB8E00E2B9D0 /* WZParallaxNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZParallaxNode.m; sourceTree = "<group>"; };
+		7FB7D762199A0BE700E2B9D0 /* galaxy.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = galaxy.atlas; sourceTree = "<group>"; };
+		7FB7D765199B3A6800E2B9D0 /* spaceship_bullet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = spaceship_bullet.sks; sourceTree = "<group>"; };
+		7FB7D767199B498F00E2B9D0 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		80C14A17199751E40067AEAE /* spaceship_fire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = spaceship_fire.sks; sourceTree = "<group>"; };
 		80C14A18199751E40067AEAE /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		80C14A1D199767D60067AEAE /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
@@ -83,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FB7D768199B498F00E2B9D0 /* CoreMotion.framework in Frameworks */,
 				7FAA221D19933B8E00E280E3 /* CoreGraphics.framework in Frameworks */,
 				7FAA221F19933B8E00E280E3 /* UIKit.framework in Frameworks */,
 				7FAA222119933B8E00E280E3 /* SpriteKit.framework in Frameworks */,
@@ -125,6 +135,7 @@
 		7FAA221919933B8E00E280E3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7FB7D767199B498F00E2B9D0 /* CoreMotion.framework */,
 				7FAA221A19933B8E00E280E3 /* Foundation.framework */,
 				7FAA221C19933B8E00E280E3 /* CoreGraphics.framework */,
 				7FAA221E19933B8E00E280E3 /* UIKit.framework */,
@@ -137,6 +148,8 @@
 		7FAA222219933B8E00E280E3 /* SpaceShip */ = {
 			isa = PBXGroup;
 			children = (
+				7FB7D764199B3A3A00E2B9D0 /* Particles */,
+				7FB7D761199A0BBB00E2B9D0 /* Texture Atlases */,
 				7FAA222B19933B8E00E280E3 /* WZAppDelegate.h */,
 				7FAA222C19933B8E00E280E3 /* WZAppDelegate.m */,
 				7FAA222E19933B8E00E280E3 /* Main.storyboard */,
@@ -155,8 +168,8 @@
 				80C14A1D199767D60067AEAE /* Spaceship.png */,
 				7FAA223919933B8E00E280E3 /* Images.xcassets */,
 				7FAA222319933B8E00E280E3 /* Supporting Files */,
-				80C14A17199751E40067AEAE /* spaceship_fire.sks */,
-				80C14A18199751E40067AEAE /* spark.png */,
+				7FB7D75E1999EB8E00E2B9D0 /* WZParallaxNode.h */,
+				7FB7D75F1999EB8E00E2B9D0 /* WZParallaxNode.m */,
 			);
 			path = SpaceShip;
 			sourceTree = "<group>";
@@ -188,6 +201,24 @@
 				7FAA224919933B8E00E280E3 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7FB7D761199A0BBB00E2B9D0 /* Texture Atlases */ = {
+			isa = PBXGroup;
+			children = (
+				7FB7D762199A0BE700E2B9D0 /* galaxy.atlas */,
+			);
+			name = "Texture Atlases";
+			sourceTree = "<group>";
+		};
+		7FB7D764199B3A3A00E2B9D0 /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				80C14A17199751E40067AEAE /* spaceship_fire.sks */,
+				80C14A18199751E40067AEAE /* spark.png */,
+				7FB7D765199B3A6800E2B9D0 /* spaceship_bullet.sks */,
+			);
+			name = Particles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,7 +300,9 @@
 			files = (
 				7FAA222719933B8E00E280E3 /* InfoPlist.strings in Resources */,
 				80C14A1A199751E40067AEAE /* spark.png in Resources */,
+				7FB7D766199B3A6800E2B9D0 /* spaceship_bullet.sks in Resources */,
 				7FAA223A19933B8E00E280E3 /* Images.xcassets in Resources */,
+				7FB7D763199A0BE700E2B9D0 /* galaxy.atlas in Resources */,
 				7FAA223019933B8E00E280E3 /* Main.storyboard in Resources */,
 				80C14A1E199767D60067AEAE /* Spaceship.png in Resources */,
 				80C14A19199751E40067AEAE /* spaceship_fire.sks in Resources */,
@@ -297,6 +330,7 @@
 				7FB7D75A1995FD5600E2B9D0 /* WZGameUtility.m in Sources */,
 				7FAA225B199341CE00E280E3 /* WZGameScence.m in Sources */,
 				7FAA225819933BE200E280E3 /* WZMainMenuScence.m in Sources */,
+				7FB7D7601999EB8E00E2B9D0 /* WZParallaxNode.m in Sources */,
 				7FAA223319933B8E00E280E3 /* WZViewController.m in Sources */,
 				7FB7D7571995FB6400E2B9D0 /* WZSpaceship.m in Sources */,
 			);
@@ -383,6 +417,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 			};
 			name = Debug;
 		};
@@ -414,6 +449,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				SDKROOT = iphoneos;
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

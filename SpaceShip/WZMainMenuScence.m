@@ -17,6 +17,18 @@ static NSString *const WZMainMenuStartButtonName = @"startButton";
 
 @implementation WZMainMenuScence
 
++ (void)loadSharedAssetsWithCompletion:(void(^)(void))completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        [WZGameScence loadSharedAssets];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completion) {
+                completion();
+            }
+        });
+    });
+}
+
 - (void)didMoveToView:(SKView *)view
 {
     if (!self.hasCreatedContent) {

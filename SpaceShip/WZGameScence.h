@@ -16,5 +16,5 @@ typedef NS_ENUM(NSInteger, WZGameWorldLayer) {
 };
 
 @interface WZGameScence : SKScene
-
++ (void)loadSharedAssets;
 @end

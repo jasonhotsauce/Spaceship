@@ -22,5 +22,6 @@ extern const CGFloat WZGameCharactorCollisionRadius;
 - (instancetype)initWithTexture:(SKTexture *)texture position:(CGPoint)position;
 - (void)configureGameCharactor;
 - (void)configurePhysicsBody;
+- (void)fire;
 
 @end

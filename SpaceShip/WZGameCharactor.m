@@ -32,4 +32,9 @@ const CGFloat WZGameCharactorCollisionRadius = 40;
     //subclass should override this
 }
 
+- (void)fire
+{
+    //subclass will override this. 
+}
+
 @end

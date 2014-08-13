@@ -7,6 +7,7 @@
 //
 
 #import "WZGameCharactor.h"
+#import <CoreMotion/CoreMotion.h>
 
 extern NSString *const WZSpaceshipNodeName;
 @interface WZSpaceship : WZGameCharactor
@@ -15,4 +16,7 @@ extern NSString *const WZSpaceshipNodeName;
 @property (nonatomic, assign) CGFloat movingSpeed;
 
 - (instancetype)initWithPosition:(CGPoint)position;
+- (BOOL)shouldFireBullet:(NSTimeInterval)currentTimeInterval;
++ (void)loadSharedAssets;
+- (void)updatePositionWithAcceleration:(CMAcceleration)acceleration timeSinceLastUpdate:(NSTimeInterval)delta;
 @end
