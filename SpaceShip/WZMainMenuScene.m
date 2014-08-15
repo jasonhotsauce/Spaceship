@@ -6,21 +6,21 @@
 //  Copyright (c) 2014 Wenbin Zhang. All rights reserved.
 //
 
-#import "WZMainMenuScence.h"
-#import "WZGameScence.h"
+#import "WZMainMenuScene.h"
+#import "WZGameScene.h"
 
 static NSString *const WZMainMenuStartButtonName = @"startButton";
-@interface WZMainMenuScence ()
+@interface WZMainMenuScene ()
 
 @property (nonatomic, assign) BOOL hasCreatedContent;
 @end
 
-@implementation WZMainMenuScence
+@implementation WZMainMenuScene
 
 + (void)loadSharedAssetsWithCompletion:(void(^)(void))completion
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        [WZGameScence loadSharedAssets];
+        [WZGameScene loadSharedAssets];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {
                 completion();
@@ -79,8 +79,8 @@ static NSString *const WZMainMenuStartButtonName = @"startButton";
 
 - (void)transistToGameScence
 {
-    WZGameScence *gameScence = [[WZGameScence alloc] initWithSize:self.size];
+    WZGameScene *gameScene = [[WZGameScene alloc] initWithSize:self.size];
     SKTransition *transition = [SKTransition doorsOpenVerticalWithDuration:0.5];
-    [self.view presentScene:gameScence transition:transition];
+    [self.view presentScene:gameScene transition:transition];
 }
 @end

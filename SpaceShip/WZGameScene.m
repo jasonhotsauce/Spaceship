@@ -6,15 +6,16 @@
 //  Copyright (c) 2014 Wenbin Zhang. All rights reserved.
 //
 
-#import "WZGameScence.h"
+#import "WZGameScene.h"
 #import "WZSpaceship.h"
+#import "WZRock.h"
 #import <CoreMotion/CoreMotion.h>
 
 static const CGPoint worldBackgroundCenter = (CGPoint){.x = 960, .y = 600};
 static const CGSize worldTileSize = (CGSize){.width = 192, .height = 120};
 static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
 
-@interface WZGameScence ()
+@interface WZGameScene () <SKPhysicsContactDelegate>
 
 @property BOOL hasCreatedContent;
 @property (nonatomic, strong) SKNode *world;
@@ -23,9 +24,11 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
 @property (nonatomic) BOOL gameStarted;
 @property (nonatomic, strong) CMMotionManager *motionManager;
 @property (nonatomic) NSTimeInterval lastUpdateTime;
+@property (nonatomic, strong) NSMutableArray *activeRocks;
+@property (nonatomic, strong) NSMutableArray *inactiveRocks;
 @end
 
-@implementation WZGameScence
+@implementation WZGameScene
 
 + (void)loadSharedAssets
 {
@@ -126,12 +129,43 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
         [self.spaceship fire];
     }
     [self.spaceship updatePositionWithAcceleration:self.motionManager.accelerometerData.acceleration timeSinceLastUpdate:timeSinceLast];
+    [self generateRocksWithTimeSinceLast:timeSinceLast];
+}
+
+- (void)generateRocksWithTimeSinceLast:(NSTimeInterval)timeSinceLast
+{
+    if (timeSinceLast > 3) {
+        WZRock *rock = [self.inactiveRocks lastObject];
+        
+    }
+}
+
+- (void)didSimulatePhysics
+{
+
 }
 
 - (void)addNode:(SKNode *)node toWorldLayer:(WZGameWorldLayer)layer
 {
     SKNode *layerNode = self.layers[layer];
     [layerNode addChild:node];
+}
+
+#pragma mark - SKPhysicsContactDelegate
+
+- (void)didBeginContact:(SKPhysicsContact *)contact
+{
+    SKNode *node = contact.bodyA.node;
+    if ([node isKindOfClass:[WZRock class]]) {
+        [(WZRock *)node collidedWidth:contact.bodyB];
+    }
+    
+    node = contact.bodyB.node;
+    if ([node isKindOfClass:[WZGameCharactor class]]) {
+        [(WZGameCharactor *)node collidedWidth:contact.bodyA];
+    }
+    
+    
 }
 
 static NSArray *backgroundTiles = nil;

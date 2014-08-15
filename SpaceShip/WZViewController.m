@@ -7,7 +7,7 @@
 //
 
 #import "WZViewController.h"
-#import "WZMainMenuScence.h"
+#import "WZMainMenuScene.h"
 
 @implementation WZViewController
 
@@ -23,7 +23,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [WZMainMenuScence loadSharedAssetsWithCompletion:^{
+    [WZMainMenuScene loadSharedAssetsWithCompletion:^{
         NSLog(@"Loaded share assets");
     }];
 }
@@ -37,7 +37,7 @@
         skView.showsNodeCount = YES;
         
         // Create and configure the scene.
-        SKScene * scene = [WZMainMenuScence sceneWithSize:skView.bounds.size];
+        SKScene * scene = [WZMainMenuScene sceneWithSize:skView.bounds.size];
         scene.scaleMode = SKSceneScaleModeAspectFill;
         
         // Present the scene.

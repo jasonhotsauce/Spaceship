@@ -23,5 +23,6 @@ extern const CGFloat WZGameCharactorCollisionRadius;
 - (void)configureGameCharactor;
 - (void)configurePhysicsBody;
 - (void)fire;
-
++ (void)loadSharedAssets;
+- (void)collidedWidth:(SKPhysicsBody *)body;
 @end

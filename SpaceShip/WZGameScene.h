@@ -15,6 +15,6 @@ typedef NS_ENUM(NSInteger, WZGameWorldLayer) {
     WZGameWorldLayerCount
 };
 
-@interface WZGameScence : SKScene
+@interface WZGameScene : SKScene
 + (void)loadSharedAssets;
 @end

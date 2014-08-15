@@ -12,6 +12,11 @@ const CGFloat WZGameCharactorCollisionRadius = 40;
 
 @implementation WZGameCharactor
 
++ (void)loadSharedAssets
+{
+    // subclass override this.
+}
+
 - (instancetype)initWithTexture:(SKTexture *)texture position:(CGPoint)position
 {
     if (self = [super initWithTexture:texture]) {

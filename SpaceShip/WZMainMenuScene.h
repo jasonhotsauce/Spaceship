@@ -8,6 +8,6 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface WZMainMenuScence : SKScene
+@interface WZMainMenuScene : SKScene
 + (void)loadSharedAssetsWithCompletion:(void(^)(void))completion;
 @end
