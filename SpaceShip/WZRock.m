@@ -43,6 +43,7 @@
 - (void)explode
 {
     //Apply rock explosion.
+    [self removeFromParent];
 }
 
 @end

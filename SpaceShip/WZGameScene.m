@@ -12,7 +12,6 @@
 #import "WZSpawnAI.h"
 #import <CoreMotion/CoreMotion.h>
 
-static const CGPoint worldBackgroundCenter = (CGPoint){.x = 960, .y = 600};
 static const CGSize worldTileSize = (CGSize){.width = 192, .height = 120};
 static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
 
@@ -26,7 +25,7 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
 @property (nonatomic, strong) CMMotionManager *motionManager;
 @property (nonatomic) NSTimeInterval lastUpdateTime;
 @property (nonatomic, strong) NSMutableArray *activeRocks;
-@property (nonatomic, strong) NSMutableArray *inactiveRocks;
+@property (nonatomic, strong) NSMutableSet *inactiveRocks;
 @property (nonatomic, strong) WZSpawnAI *ai;
 @end
 
@@ -41,7 +40,7 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
             int tileNumber = (y * 10) + (x+1);
             NSLog(@"tileNumber: %d", tileNumber);
             SKSpriteNode *tileNode = [SKSpriteNode spriteNodeWithTexture:[tileAtlas textureNamed:[NSString stringWithFormat:@"galaxy_%d.png", tileNumber]]];
-            CGPoint position = CGPointMake((x * 192) - worldBackgroundCenter.x, (worldSize.height - y*worldTileSize.height) - worldBackgroundCenter.y);
+            CGPoint position = CGPointMake((x * 192), worldSize.height - y*worldTileSize.height);
             tileNode.position = position;
             tileNode.blendMode = SKBlendModeReplace;
             [(NSMutableArray *)backgroundTiles addObject:tileNode];
@@ -59,7 +58,8 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
         [self configureWorldLayer];
         
         self.physicsWorld.gravity = CGVectorMake(0, 0);
-        _ai = [[WZSpawnAI alloc] initWithCharactor:nil target:nil];
+        self.physicsWorld.contactDelegate = self;
+        _ai = [[WZSpawnAI alloc] initWithCharactor:self target:nil];
     }
     return self;
 }
@@ -121,13 +121,16 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
     self.gameStarted = NO;
 }
 
-- (void)generateRockAtPosition:(CGPoint)position
+- (void)generateRockAtPosition:(CGPoint)position withSpeed:(NSTimeInterval)movingSpeed
 {
-    WZRock *rock = [self.inactiveRocks lastObject];
+    WZRock *rock = [self dequeueRock];
     if (!rock) {
         rock = [[WZRock alloc] initWithPosition:position];
     }
-    rock runAction:[]
+    SKAction *rotateRock = [SKAction rotateByAngle:M_PI*2 duration:2];
+    SKAction *repeatRotation = [SKAction repeatActionForever:rotateRock];
+    [rock runAction:[SKAction group:@[repeatRotation, [SKAction moveToY:-100 duration:movingSpeed]]]];
+    [self addChild:rock];
 }
 
 - (void)update:(NSTimeInterval)currentTime
@@ -146,7 +149,25 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
 
 - (void)didSimulatePhysics
 {
+    [self enqueueRock];
+}
 
+- (void)enqueueRock
+{
+    for (WZRock *rock in self.activeRocks) {
+        if (rock.position.y <= -100) {
+            [self.inactiveRocks addObject:rock];
+            [rock removeFromParent];
+        }
+    }
+    [self.activeRocks removeObjectsInArray:[self.inactiveRocks allObjects]];
+}
+
+- (WZRock *)dequeueRock
+{
+    WZRock *rock = [self.inactiveRocks anyObject];
+    [self.inactiveRocks removeObject:rock];
+    return rock;
 }
 
 - (void)addNode:(SKNode *)node toWorldLayer:(WZGameWorldLayer)layer

@@ -31,13 +31,15 @@
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
+    CGFloat scale = [UIScreen mainScreen].scale;
+    CGSize viewSize = CGSizeMake(CGRectGetWidth(self.view.bounds)*scale, CGRectGetHeight(self.view.bounds)*scale);
     SKView * skView = (SKView *)self.view;
     if (!skView.scene) {
         skView.showsFPS = YES;
         skView.showsNodeCount = YES;
         
         // Create and configure the scene.
-        SKScene * scene = [WZMainMenuScene sceneWithSize:skView.bounds.size];
+        SKScene * scene = [WZMainMenuScene sceneWithSize:viewSize];
         scene.scaleMode = SKSceneScaleModeAspectFill;
         
         // Present the scene.

@@ -7,6 +7,7 @@
 //
 
 #import "WZSpaceship.h"
+#import "WZGameScene.h"
 
 NSString *const WZSpaceshipNodeName = @"spaceship";
 static const CGFloat kMinMovingSpeed = 100;
@@ -28,10 +29,13 @@ static const CGFloat WZMotionDecelerateSpeed = 0.4f;
 {
     fireEmitter = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"spaceship_fire" ofType:@"sks"]];
     bulletEmitter = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"spaceship_bullet" ofType:@"sks"]];
-    bulletEmitter.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:bulletEmitter.frame.size.width];
-    bulletEmitter.physicsBody.categoryBitMask = WZGameCharactorColliderTypeBullet;
-    bulletEmitter.physicsBody.collisionBitMask = WZGameCharactorColliderTypeEnemyShip | WZGameCharactorColliderTypeRock;
-    bulletEmitter.physicsBody.contactTestBitMask = WZGameCharactorColliderTypeRock | WZGameCharactorColliderTypeEnemyShip | WZGameCharactorColliderTypeSpaceship;
+    
+    
+    bulletNode = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:CGSizeMake(10.0, 24.0)];
+    bulletNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:15];
+    bulletNode.physicsBody.categoryBitMask = WZGameCharactorColliderTypeBullet;
+    bulletNode.physicsBody.collisionBitMask = WZGameCharactorColliderTypeEnemyShip | WZGameCharactorColliderTypeRock;
+    bulletNode.physicsBody.contactTestBitMask = WZGameCharactorColliderTypeRock | WZGameCharactorColliderTypeEnemyShip | WZGameCharactorColliderTypeSpaceship;
 }
 
 - (instancetype)initWithPosition:(CGPoint)position
@@ -72,13 +76,16 @@ static const CGFloat WZMotionDecelerateSpeed = 0.4f;
 
 - (void)fire
 {
-    SKEmitterNode *bullet = [[self bulletEmitter] copy];
+    SKSpriteNode *bullet = [[self bulletNode] copy];
+    SKEmitterNode *bulletEmitter = [[self bulletEmitter] copy];
+    bulletEmitter.targetNode = [self.scene childNodeWithName:@"world"];
     CGPoint position = CGPointMake(self.position.x, self.position.y + self.size.height/2);
     bullet.position = position;
     [bullet runAction:[SKAction sequence:@[[SKAction moveToY:self.scene.size.height + 50 duration:1.5], [SKAction runBlock:^{
         [bullet removeFromParent];
     }]]]];
-    [self.scene addChild:bullet];
+    [bullet addChild:bulletEmitter];
+    [(WZGameScene *)self.scene addNode:bullet toWorldLayer:WZGameWorldLayerCharactors];
 }
 
 - (void)updatePositionWithAcceleration:(CMAcceleration)acceleration timeSinceLastUpdate:(NSTimeInterval)delta
@@ -126,6 +133,12 @@ static SKEmitterNode *fireEmitter = nil;
 - (SKEmitterNode *)fireEmitter
 {
     return fireEmitter;
+}
+
+static SKSpriteNode *bulletNode = nil;
+- (SKSpriteNode *)bulletNode
+{
+    return bulletNode;
 }
 
 static SKEmitterNode *bulletEmitter = nil;

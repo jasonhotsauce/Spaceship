@@ -17,5 +17,7 @@ typedef NS_ENUM(NSInteger, WZGameWorldLayer) {
 
 @interface WZGameScene : SKScene
 + (void)loadSharedAssets;
-- (void)generateRockAtPosition:(CGPoint)position;
+- (void)generateRockAtPosition:(CGPoint)position withSpeed:(NSTimeInterval)movingSpeed;
+- (void)addNode:(SKNode *)node toWorldLayer:(WZGameWorldLayer)layer;
+
 @end

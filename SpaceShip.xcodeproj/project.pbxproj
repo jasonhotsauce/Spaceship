@@ -28,6 +28,7 @@
 		7FACE2AA199DE1DA00AF0089 /* WZEnemyShip.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FACE2A9199DE1DA00AF0089 /* WZEnemyShip.m */; };
 		7FACE2AD199E5E3100AF0089 /* WZArtificialIntelligence.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FACE2AC199E5E3100AF0089 /* WZArtificialIntelligence.m */; };
 		7FACE2B0199E62CA00AF0089 /* WZSpawnAI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FACE2AF199E62CA00AF0089 /* WZSpawnAI.m */; };
+		7FACE2B2199F22A900AF0089 /* rock.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FACE2B1199F22A900AF0089 /* rock.png */; };
 		7FB7D7571995FB6400E2B9D0 /* WZSpaceship.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB7D7561995FB6400E2B9D0 /* WZSpaceship.m */; };
 		7FB7D75A1995FD5600E2B9D0 /* WZGameUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB7D7591995FD5600E2B9D0 /* WZGameUtility.m */; };
 		7FB7D75D1995FE3C00E2B9D0 /* WZGameCharactor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB7D75C1995FE3C00E2B9D0 /* WZGameCharactor.m */; };
@@ -84,6 +85,7 @@
 		7FACE2AC199E5E3100AF0089 /* WZArtificialIntelligence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZArtificialIntelligence.m; sourceTree = "<group>"; };
 		7FACE2AE199E62CA00AF0089 /* WZSpawnAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZSpawnAI.h; sourceTree = "<group>"; };
 		7FACE2AF199E62CA00AF0089 /* WZSpawnAI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZSpawnAI.m; sourceTree = "<group>"; };
+		7FACE2B1199F22A900AF0089 /* rock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rock.png; sourceTree = "<group>"; };
 		7FB7D7551995FB6400E2B9D0 /* WZSpaceship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZSpaceship.h; sourceTree = "<group>"; };
 		7FB7D7561995FB6400E2B9D0 /* WZSpaceship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZSpaceship.m; sourceTree = "<group>"; };
 		7FB7D7581995FD5600E2B9D0 /* WZGameUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZGameUtility.h; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				7FACE2AE199E62CA00AF0089 /* WZSpawnAI.h */,
 				7FACE2AF199E62CA00AF0089 /* WZSpawnAI.m */,
 				80C14A1D199767D60067AEAE /* Spaceship.png */,
+				7FACE2B1199F22A900AF0089 /* rock.png */,
 				7FAA223919933B8E00E280E3 /* Images.xcassets */,
 				7FAA222319933B8E00E280E3 /* Supporting Files */,
 				7FB7D75E1999EB8E00E2B9D0 /* WZParallaxNode.h */,
@@ -328,6 +331,7 @@
 				7FB7D766199B3A6800E2B9D0 /* spaceship_bullet.sks in Resources */,
 				7FAA223A19933B8E00E280E3 /* Images.xcassets in Resources */,
 				7FB7D763199A0BE700E2B9D0 /* galaxy.atlas in Resources */,
+				7FACE2B2199F22A900AF0089 /* rock.png in Resources */,
 				7FAA223019933B8E00E280E3 /* Main.storyboard in Resources */,
 				80C14A1E199767D60067AEAE /* Spaceship.png in Resources */,
 				80C14A19199751E40067AEAE /* spaceship_fire.sks in Resources */,

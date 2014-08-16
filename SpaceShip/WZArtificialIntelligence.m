@@ -10,7 +10,7 @@
 
 @implementation WZArtificialIntelligence
 
-- (instancetype)initWithCharactor:(WZGameCharactor *)charactor target:(WZGameCharactor *)target
+- (instancetype)initWithCharactor:(SKNode *)charactor target:(WZGameCharactor *)target
 {
     if (self = [super init]) {
         _charactor = charactor;
