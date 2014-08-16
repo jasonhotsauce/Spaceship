@@ -38,6 +38,7 @@
 		80C14A19199751E40067AEAE /* spaceship_fire.sks in Resources */ = {isa = PBXBuildFile; fileRef = 80C14A17199751E40067AEAE /* spaceship_fire.sks */; };
 		80C14A1A199751E40067AEAE /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C14A18199751E40067AEAE /* spark.png */; };
 		80C14A1E199767D60067AEAE /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C14A1D199767D60067AEAE /* Spaceship.png */; };
+		80C14A21199E82A80067AEAE /* WZBullet.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C14A20199E82A80067AEAE /* WZBullet.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,8 @@
 		80C14A17199751E40067AEAE /* spaceship_fire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = spaceship_fire.sks; sourceTree = "<group>"; };
 		80C14A18199751E40067AEAE /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		80C14A1D199767D60067AEAE /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
+		80C14A1F199E82A80067AEAE /* WZBullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZBullet.h; sourceTree = "<group>"; };
+		80C14A20199E82A80067AEAE /* WZBullet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZBullet.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +182,8 @@
 				7FACE2A6199DE1AB00AF0089 /* WZRock.m */,
 				7FACE2A8199DE1DA00AF0089 /* WZEnemyShip.h */,
 				7FACE2A9199DE1DA00AF0089 /* WZEnemyShip.m */,
+				80C14A1F199E82A80067AEAE /* WZBullet.h */,
+				80C14A20199E82A80067AEAE /* WZBullet.m */,
 				7FB7D7581995FD5600E2B9D0 /* WZGameUtility.h */,
 				7FB7D7591995FD5600E2B9D0 /* WZGameUtility.m */,
 				7FACE2AB199E5E3100AF0089 /* WZArtificialIntelligence.h */,
@@ -352,6 +357,7 @@
 				7FACE2AD199E5E3100AF0089 /* WZArtificialIntelligence.m in Sources */,
 				7FB7D75A1995FD5600E2B9D0 /* WZGameUtility.m in Sources */,
 				7FAA225B199341CE00E280E3 /* WZGameScene.m in Sources */,
+				80C14A21199E82A80067AEAE /* WZBullet.m in Sources */,
 				7FAA225819933BE200E280E3 /* WZMainMenuScene.m in Sources */,
 				7FACE2B0199E62CA00AF0089 /* WZSpawnAI.m in Sources */,
 				7FB7D7601999EB8E00E2B9D0 /* WZParallaxNode.m in Sources */,

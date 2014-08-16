@@ -10,4 +10,9 @@
 
 @implementation WZGameUtility
 
++ (NSInteger)generateRandomNumberFrom:(NSInteger)numberA to:(NSInteger)numberB
+{
+    return numberA + arc4random() % numberB;
+}
+
 @end

@@ -7,13 +7,17 @@
 //
 
 #import "WZRock.h"
+#import "WZBullet.h"
+#import "WZSpaceship.h"
+#import "WZSpawnAI.h"
 
 @implementation WZRock
 
 - (instancetype)initWithPosition:(CGPoint)position
 {
     SKTexture *rockTexture = [SKTexture textureWithImageNamed:@"rock.png"];
-    return [super initWithTexture:rockTexture position:position];
+    self = [super initWithTexture:rockTexture position:position];
+    return self;
 }
 
 - (void)configurePhysicsBody
@@ -25,7 +29,20 @@
 
 - (void)collidedWidth:(SKPhysicsBody *)bodyB
 {
+    SKNode *node = bodyB.node;
+    if (bodyB.categoryBitMask & WZGameCharactorColliderTypeBullet) {
+        [self explode];
+        [node removeFromParent];
+    }
+    if ([node isKindOfClass:[WZSpaceship class]]) {
+        [(WZSpaceship *)node collidedWidth:node.physicsBody];
+        [self explode];
+    }
+}
 
+- (void)explode
+{
+    //Apply rock explosion.
 }
 
 @end

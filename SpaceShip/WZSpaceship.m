@@ -31,7 +31,7 @@ static const CGFloat WZMotionDecelerateSpeed = 0.4f;
     bulletEmitter.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:bulletEmitter.frame.size.width];
     bulletEmitter.physicsBody.categoryBitMask = WZGameCharactorColliderTypeBullet;
     bulletEmitter.physicsBody.collisionBitMask = WZGameCharactorColliderTypeEnemyShip | WZGameCharactorColliderTypeRock;
-    bulletEmitter.physicsBody.contactTestBitMask = WZGameCharactorColliderTypeRock | WZGameCharactorColliderTypeEnemyShip;
+    bulletEmitter.physicsBody.contactTestBitMask = WZGameCharactorColliderTypeRock | WZGameCharactorColliderTypeEnemyShip | WZGameCharactorColliderTypeSpaceship;
 }
 
 - (instancetype)initWithPosition:(CGPoint)position
@@ -115,6 +115,11 @@ static const CGFloat WZMotionDecelerateSpeed = 0.4f;
         currentVelocity.y = 0;
     }
     self.position = newPosition;
+}
+
+- (void)collidedWidth:(SKPhysicsBody *)body
+{
+    
 }
 
 static SKEmitterNode *fireEmitter = nil;

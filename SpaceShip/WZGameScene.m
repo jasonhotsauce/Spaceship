@@ -9,6 +9,7 @@
 #import "WZGameScene.h"
 #import "WZSpaceship.h"
 #import "WZRock.h"
+#import "WZSpawnAI.h"
 #import <CoreMotion/CoreMotion.h>
 
 static const CGPoint worldBackgroundCenter = (CGPoint){.x = 960, .y = 600};
@@ -26,6 +27,7 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
 @property (nonatomic) NSTimeInterval lastUpdateTime;
 @property (nonatomic, strong) NSMutableArray *activeRocks;
 @property (nonatomic, strong) NSMutableArray *inactiveRocks;
+@property (nonatomic, strong) WZSpawnAI *ai;
 @end
 
 @implementation WZGameScene
@@ -57,6 +59,7 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
         [self configureWorldLayer];
         
         self.physicsWorld.gravity = CGVectorMake(0, 0);
+        _ai = [[WZSpawnAI alloc] initWithCharactor:nil target:nil];
     }
     return self;
 }
@@ -118,6 +121,15 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
     self.gameStarted = NO;
 }
 
+- (void)generateRockAtPosition:(CGPoint)position
+{
+    WZRock *rock = [self.inactiveRocks lastObject];
+    if (!rock) {
+        rock = [[WZRock alloc] initWithPosition:position];
+    }
+    rock runAction:[]
+}
+
 - (void)update:(NSTimeInterval)currentTime
 {
     NSTimeInterval timeSinceLast = currentTime - self.lastUpdateTime;
@@ -129,15 +141,7 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
         [self.spaceship fire];
     }
     [self.spaceship updatePositionWithAcceleration:self.motionManager.accelerometerData.acceleration timeSinceLastUpdate:timeSinceLast];
-    [self generateRocksWithTimeSinceLast:timeSinceLast];
-}
-
-- (void)generateRocksWithTimeSinceLast:(NSTimeInterval)timeSinceLast
-{
-    if (timeSinceLast > 3) {
-        WZRock *rock = [self.inactiveRocks lastObject];
-        
-    }
+    [self.ai updateWithTimeSinceLastUpdate:timeSinceLast];
 }
 
 - (void)didSimulatePhysics

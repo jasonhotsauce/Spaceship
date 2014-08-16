@@ -12,4 +12,5 @@
 
 - (instancetype)initWithPosition:(CGPoint)position;
 - (void)collidedWidth:(SKPhysicsBody *)bodyB;
+
 @end

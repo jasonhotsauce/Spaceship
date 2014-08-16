@@ -17,4 +17,5 @@ typedef NS_ENUM(NSInteger, WZGameWorldLayer) {
 
 @interface WZGameScene : SKScene
 + (void)loadSharedAssets;
+- (void)generateRockAtPosition:(CGPoint)position;
 @end

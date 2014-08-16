@@ -10,4 +10,6 @@
 
 @interface WZGameUtility : NSObject
 
++ (NSInteger)generateRandomNumberFrom:(NSInteger)numberA to:(NSInteger)numberB;
+
 @end
