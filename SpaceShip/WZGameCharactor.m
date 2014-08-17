@@ -42,4 +42,9 @@ const CGFloat WZGameCharactorCollisionRadius = 40;
     //subclass will override this. 
 }
 
+- (void)collidedWidth:(SKPhysicsBody *)body
+{
+    //subclass will override this.
+}
+
 @end

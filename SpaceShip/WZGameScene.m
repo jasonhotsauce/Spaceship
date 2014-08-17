@@ -27,6 +27,7 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
 @property (nonatomic, strong) NSMutableArray *activeRocks;
 @property (nonatomic, strong) NSMutableSet *inactiveRocks;
 @property (nonatomic, strong) WZSpawnAI *ai;
+@property (nonatomic, strong) SKLabelNode *scoreLabel;
 @end
 
 @implementation WZGameScene
@@ -41,12 +42,14 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
             NSLog(@"tileNumber: %d", tileNumber);
             SKSpriteNode *tileNode = [SKSpriteNode spriteNodeWithTexture:[tileAtlas textureNamed:[NSString stringWithFormat:@"galaxy_%d.png", tileNumber]]];
             CGPoint position = CGPointMake((x * 192), worldSize.height - y*worldTileSize.height);
+            NSLog(@"position: %.2f - %.2f", position.x, position.y);
             tileNode.position = position;
             tileNode.blendMode = SKBlendModeReplace;
             [(NSMutableArray *)backgroundTiles addObject:tileNode];
         }
     }
     [WZSpaceship loadSharedAssets];
+    [WZRock loadSharedAssets];
 }
 
 - (instancetype)initWithSize:(CGSize)size
@@ -95,6 +98,14 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
     for (SKSpriteNode *worldTile in backgroundTiles) {
         [self addNode:worldTile toWorldLayer:WZGameWorldLayerBackground];
     }
+    
+    self.scoreLabel = [[SKLabelNode alloc] initWithFontNamed:@"Helvetica"];
+    self.scoreLabel.fontColor = [SKColor whiteColor];
+    self.scoreLabel.fontSize = 37.0;
+    self.scoreLabel.position = CGPointMake(20,self.size.height - 60);
+    self.scoreLabel.text = @"0";
+    self.scoreLabel.name = @"score";
+    [self addNode:self.scoreLabel toWorldLayer:WZGameWorldLayerStatusLabel];
 }
 
 - (void)configureWorldLayer
@@ -176,18 +187,25 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
     [layerNode addChild:node];
 }
 
+- (void)addScoreToPlayer:(NSInteger)score
+{
+    NSInteger currentScore = [self.scoreLabel.text integerValue];
+    currentScore += score;
+    self.scoreLabel.text = [NSString stringWithFormat:@"%ld", (long)currentScore];
+}
+
 #pragma mark - SKPhysicsContactDelegate
 
 - (void)didBeginContact:(SKPhysicsContact *)contact
 {
     SKNode *node = contact.bodyA.node;
     if ([node isKindOfClass:[WZRock class]]) {
-        [(WZRock *)node collidedWidth:contact.bodyB];
+        [(WZRock *)node collidedWith:contact.bodyB];
     }
     
     node = contact.bodyB.node;
     if ([node isKindOfClass:[WZGameCharactor class]]) {
-        [(WZGameCharactor *)node collidedWidth:contact.bodyA];
+        [(WZGameCharactor *)node collidedWith:contact.bodyA];
     }
     
     

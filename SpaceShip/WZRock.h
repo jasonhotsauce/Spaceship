@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Wenbin Zhang. All rights reserved.
 //
 
-#import "WZGameCharactor.h"
+#import "WZEnemyCharactor.h"
 
-@interface WZRock : WZGameCharactor
+@interface WZRock : WZEnemyCharactor
 
 - (instancetype)initWithPosition:(CGPoint)position;
-- (void)collidedWidth:(SKPhysicsBody *)bodyB;
+- (void)collidedWith:(SKPhysicsBody *)bodyB;
 
 @end

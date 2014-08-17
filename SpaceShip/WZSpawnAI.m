@@ -11,7 +11,7 @@
 #import "WZRock.h"
 #import "WZGameUtility.h"
 
-static const NSTimeInterval WZMinRockGenerationGap = 5;
+static const NSTimeInterval WZMinRockGenerationGap = 2;
 static const NSTimeInterval WZMaxRockPresentedTime = 3;
 
 @interface WZSpawnAI ()

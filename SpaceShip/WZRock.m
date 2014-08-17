@@ -10,13 +10,22 @@
 #import "WZBullet.h"
 #import "WZSpaceship.h"
 #import "WZSpawnAI.h"
+#import "WZGameScene.h"
 
 @implementation WZRock
+
++ (void)loadSharedAssets
+{
+    explosion = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"explosion" ofType:@"sks"]];
+}
 
 - (instancetype)initWithPosition:(CGPoint)position
 {
     SKTexture *rockTexture = [SKTexture textureWithImageNamed:@"rock.png"];
     self = [super initWithTexture:rockTexture position:position];
+    if (self) {
+        self.enemyScore = 5;
+    }
     return self;
 }
 
@@ -27,23 +36,42 @@
     self.physicsBody.collisionBitMask = WZGameCharactorColliderTypeSpaceship | WZGameCharactorColliderTypeBullet;
 }
 
-- (void)collidedWidth:(SKPhysicsBody *)bodyB
+- (void)collidedWith:(SKPhysicsBody *)bodyB
 {
     SKNode *node = bodyB.node;
     if (bodyB.categoryBitMask & WZGameCharactorColliderTypeBullet) {
-        [self explode];
+        [self destroyed];
         [node removeFromParent];
     }
     if ([node isKindOfClass:[WZSpaceship class]]) {
-        [(WZSpaceship *)node collidedWidth:node.physicsBody];
-        [self explode];
+        [(WZSpaceship *)node collidedWith:node.physicsBody];
+        [self performExplosion];
     }
 }
 
-- (void)explode
+- (void)destroyed
 {
     //Apply rock explosion.
+    [(WZGameScene *)self.scene addScoreToPlayer:self.enemyScore];
+    [self performExplosion];
+}
+
+- (void)performExplosion
+{
+    SKEmitterNode *explosionNode = [[self explosion] copy];
+    explosionNode.position = self.position;
+    explosionNode.targetNode = self.parent;
+    __weak typeof(explosionNode) weakNode = explosionNode;
+    [explosionNode runAction:[SKAction sequence:@[[SKAction waitForDuration:0.5], [SKAction runBlock:^{
+        [weakNode removeFromParent];
+    }]]]];
+    [(WZGameScene *)self.scene addNode:explosionNode toWorldLayer:WZGameWorldLayerCharactors];
     [self removeFromParent];
 }
 
+static SKEmitterNode *explosion = nil;
+- (SKEmitterNode *)explosion
+{
+    return explosion;
+}
 @end

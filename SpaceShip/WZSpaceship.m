@@ -29,7 +29,7 @@ static const CGFloat WZMotionDecelerateSpeed = 0.4f;
 {
     fireEmitter = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"spaceship_fire" ofType:@"sks"]];
     bulletEmitter = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"spaceship_bullet" ofType:@"sks"]];
-    
+    explosion = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"explosion" ofType:@"sks"]];
     
     bulletNode = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:CGSizeMake(10.0, 24.0)];
     bulletNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:15];
@@ -124,9 +124,24 @@ static const CGFloat WZMotionDecelerateSpeed = 0.4f;
     self.position = newPosition;
 }
 
-- (void)collidedWidth:(SKPhysicsBody *)body
+- (void)collidedWith:(SKPhysicsBody *)body
 {
-    
+    if (body.categoryBitMask & (WZGameCharactorColliderTypeBullet | WZGameCharactorColliderTypeEnemyShip | WZGameCharactorColliderTypeRock)) {
+        [self performDeath];
+    }
+}
+
+- (void)performDeath
+{
+    SKEmitterNode *explosionNode = [[self explosion] copy];
+    explosionNode.position = self.position;
+    explosionNode.targetNode = self.parent;
+    [(WZGameScene *)self.scene addNode:explosionNode toWorldLayer:WZGameWorldLayerCharactors];
+    __weak typeof(explosionNode) weakNode = explosionNode;
+    [explosionNode runAction:[SKAction sequence:@[[SKAction waitForDuration:0.5], [SKAction runBlock:^{
+        [weakNode removeFromParent];
+        [(WZGameScene *)self.scene endGame];
+    }]]]];
 }
 
 static SKEmitterNode *fireEmitter = nil;
@@ -145,5 +160,11 @@ static SKEmitterNode *bulletEmitter = nil;
 - (SKEmitterNode *)bulletEmitter
 {
     return bulletEmitter;
+}
+
+static SKEmitterNode *explosion = nil;
+- (SKEmitterNode *)explosion
+{
+    return explosion;
 }
 @end
