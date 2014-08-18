@@ -41,7 +41,7 @@
 - (void)setTotalScore:(NSInteger)totalScore
 {
     _totalScore = totalScore;
-    self.summaryNode.text = [NSString stringWithFormat:@"%ld", totalScore];
+    self.summaryNode.text = [NSString stringWithFormat:@"%ld", (long)totalScore];
 }
 
 @end
