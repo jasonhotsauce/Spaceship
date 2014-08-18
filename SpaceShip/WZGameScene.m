@@ -10,6 +10,7 @@
 #import "WZSpaceship.h"
 #import "WZRock.h"
 #import "WZSpawnAI.h"
+#import "WZGameOverNode.h"
 #import <CoreMotion/CoreMotion.h>
 
 static const CGSize worldTileSize = (CGSize){.width = 192, .height = 120};
@@ -63,6 +64,8 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
         self.physicsWorld.gravity = CGVectorMake(0, 0);
         self.physicsWorld.contactDelegate = self;
         _ai = [[WZSpawnAI alloc] initWithCharactor:self target:nil];
+        _activeRocks = [[NSMutableArray alloc] init];
+        _inactiveRocks = [[NSMutableSet alloc] init];
     }
     return self;
 }
@@ -130,6 +133,16 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
 {
     [self.motionManager stopAccelerometerUpdates];
     self.gameStarted = NO;
+    [self addGameOverNode];
+    [self.spaceship removeFromParent];
+}
+
+- (void)addGameOverNode
+{
+    WZGameOverNode *gameOver = [[WZGameOverNode alloc] initWithColor:[SKColor whiteColor] size:CGSizeMake(400, 200)];
+    gameOver.position = CGPointMake(CGRectGetWidth(self.frame)/2, CGRectGetHeight(self.frame)/2);
+    gameOver.totalScore = [self.scoreLabel.text integerValue];
+    [self addNode:gameOver toWorldLayer:WZGameWorldLayerStatusLabel];
 }
 
 - (void)generateRockAtPosition:(CGPoint)position withSpeed:(NSTimeInterval)movingSpeed
@@ -146,21 +159,25 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
 
 - (void)update:(NSTimeInterval)currentTime
 {
-    NSTimeInterval timeSinceLast = currentTime - self.lastUpdateTime;
-    self.lastUpdateTime = currentTime;
-    if (timeSinceLast > 1) {
-        timeSinceLast = 1.0/60.0;
+    if (self.gameStarted) {
+        NSTimeInterval timeSinceLast = currentTime - self.lastUpdateTime;
+        self.lastUpdateTime = currentTime;
+        if (timeSinceLast > 1) {
+            timeSinceLast = 1.0/60.0;
+        }
+        if ([self.spaceship shouldFireBullet:(NSTimeInterval)currentTime]) {
+            [self.spaceship fire];
+        }
+        [self.spaceship updatePositionWithAcceleration:self.motionManager.accelerometerData.acceleration timeSinceLastUpdate:timeSinceLast];
+        [self.ai updateWithTimeSinceLastUpdate:timeSinceLast];
     }
-    if ([self.spaceship shouldFireBullet:(NSTimeInterval)currentTime]) {
-        [self.spaceship fire];
-    }
-    [self.spaceship updatePositionWithAcceleration:self.motionManager.accelerometerData.acceleration timeSinceLastUpdate:timeSinceLast];
-    [self.ai updateWithTimeSinceLastUpdate:timeSinceLast];
 }
 
 - (void)didSimulatePhysics
 {
-    [self enqueueRock];
+    if (self.gameStarted) {
+        [self enqueueRock];
+    }
 }
 
 - (void)enqueueRock
@@ -177,7 +194,9 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
 - (WZRock *)dequeueRock
 {
     WZRock *rock = [self.inactiveRocks anyObject];
-    [self.inactiveRocks removeObject:rock];
+    if (rock) {
+        [self.inactiveRocks removeObject:rock];
+    }
     return rock;
 }
 

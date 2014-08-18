@@ -44,7 +44,7 @@
         [node removeFromParent];
     }
     if ([node isKindOfClass:[WZSpaceship class]]) {
-        [(WZSpaceship *)node collidedWith:node.physicsBody];
+        [(WZSpaceship *)node collidedWith:self.physicsBody];
         [self performExplosion];
     }
 }
