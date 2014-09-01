@@ -12,11 +12,13 @@
 #import "WZGameUtility.h"
 
 static const NSTimeInterval WZMinRockGenerationGap = 2;
+static const NSTimeInterval WZMinShipGenerationGap = 4;
 static const NSTimeInterval WZMaxRockPresentedTime = 3;
 
 @interface WZSpawnAI ()
 
 @property (nonatomic) NSTimeInterval timeUntilNextRockGeneration;
+@property (nonatomic) NSTimeInterval timeUntilNextShipGeneration;
 @end
 
 @implementation WZSpawnAI
@@ -25,11 +27,28 @@ static const NSTimeInterval WZMaxRockPresentedTime = 3;
 {
     // generate rock.
     self.timeUntilNextRockGeneration += interval;
+    self.timeUntilNextShipGeneration += interval;
+    [self generateRocks];
+    [self generateEnemyShips];
+}
+
+- (void)generateRocks
+{
     if ([self.charactor isKindOfClass:[WZGameScene class]] && self.timeUntilNextRockGeneration >= WZMinRockGenerationGap) {
         
         CGPoint rockPosition = CGPointMake([WZGameUtility generateRandomNumberFrom:0 to:ceilf(self.charactor.frame.size.width)], self.charactor.frame.size.height);
         [(WZGameScene *)self.charactor generateRockAtPosition:rockPosition withSpeed:WZMaxRockPresentedTime];
         self.timeUntilNextRockGeneration = 0;
+    }
+}
+
+- (void)generateEnemyShips
+{
+    if (self.totalEnemies < self.enemyShipsAllowed && self.timeUntilNextShipGeneration >= WZMinShipGenerationGap) {
+        CGPoint enemyShipPosition = CGPointMake([WZGameUtility generateRandomNumberFrom:0 to:ceilf(self.charactor.frame.size.width)], self.charactor.frame.size.height - 50.0);
+        [(WZGameScene *)self.charactor generateEnemyShipAtPosition:enemyShipPosition];
+        self.totalEnemies++;
+        self.timeUntilNextShipGeneration = 0;
     }
 }
 @end

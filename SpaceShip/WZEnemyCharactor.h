@@ -13,5 +13,6 @@
 @property (nonatomic) NSInteger enemyScore;
 
 - (void)destroyed;
+- (void)performExplosion;
 
 @end

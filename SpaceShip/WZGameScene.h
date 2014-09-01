@@ -15,10 +15,17 @@ typedef NS_ENUM(NSInteger, WZGameWorldLayer) {
     WZGameWorldLayerCount
 };
 
+@class WZSpaceship;
+@class WZEnemyShip;
+
 @interface WZGameScene : SKScene
+@property (nonatomic, strong) WZSpaceship *spaceship;
+
 + (void)loadSharedAssets;
 - (void)generateRockAtPosition:(CGPoint)position withSpeed:(NSTimeInterval)movingSpeed;
+- (void)generateEnemyShipAtPosition:(CGPoint)position;
 - (void)addNode:(SKNode *)node toWorldLayer:(WZGameWorldLayer)layer;
 - (void)addScoreToPlayer:(NSInteger)score;
 - (void)endGame;
+- (void)enemyShipDestroyed:(WZEnemyShip *)enemyShip;
 @end

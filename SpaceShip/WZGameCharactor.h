@@ -19,6 +19,8 @@ extern const CGFloat WZGameCharactorCollisionRadius;
 
 @interface WZGameCharactor : SKSpriteNode
 
+@property (nonatomic) BOOL dying;
+
 - (instancetype)initWithTexture:(SKTexture *)texture position:(CGPoint)position;
 - (void)configureGameCharactor;
 - (void)configurePhysicsBody;

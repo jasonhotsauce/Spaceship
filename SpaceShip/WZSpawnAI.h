@@ -10,4 +10,7 @@
 
 @interface WZSpawnAI : WZArtificialIntelligence
 
+@property (nonatomic) NSUInteger enemyShipsAllowed;
+@property (nonatomic) NSUInteger totalEnemies;
+
 @end

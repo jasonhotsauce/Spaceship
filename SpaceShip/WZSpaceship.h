@@ -12,7 +12,6 @@
 extern NSString *const WZSpaceshipNodeName;
 @interface WZSpaceship : WZGameCharactor
 
-@property (nonatomic, assign) NSInteger health;
 @property (nonatomic, assign) CGFloat movingSpeed;
 
 - (instancetype)initWithPosition:(CGPoint)position;

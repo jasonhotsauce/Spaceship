@@ -15,4 +15,11 @@
     return numberA + arc4random() % numberB;
 }
 
++ (CGFloat)radiusBetweenPoint:(CGPoint)pointA toPoint:(CGPoint)pointB
+{
+    CGFloat deltaX = pointB.x - pointA.x;
+    CGFloat deltaY = pointB.y - pointA.y;
+    return atan2f(deltaY, deltaX);
+}
+
 @end

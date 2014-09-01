@@ -11,6 +11,8 @@
 #import "WZRock.h"
 #import "WZSpawnAI.h"
 #import "WZGameOverNode.h"
+#import "WZEnemyShip.h"
+#import "WZEnemyShipAI.h"
 #import <CoreMotion/CoreMotion.h>
 
 static const CGSize worldTileSize = (CGSize){.width = 192, .height = 120};
@@ -21,12 +23,12 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
 @property BOOL hasCreatedContent;
 @property (nonatomic, strong) SKNode *world;
 @property (nonatomic, strong) NSMutableArray *layers;
-@property (nonatomic, strong) WZSpaceship *spaceship;
 @property (nonatomic) BOOL gameStarted;
 @property (nonatomic, strong) CMMotionManager *motionManager;
 @property (nonatomic) NSTimeInterval lastUpdateTime;
 @property (nonatomic, strong) NSMutableArray *activeRocks;
 @property (nonatomic, strong) NSMutableSet *inactiveRocks;
+@property (nonatomic, strong) NSMutableArray *activeShips;
 @property (nonatomic, strong) WZSpawnAI *ai;
 @property (nonatomic, strong) SKLabelNode *scoreLabel;
 @end
@@ -51,6 +53,7 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
     }
     [WZSpaceship loadSharedAssets];
     [WZRock loadSharedAssets];
+    [WZEnemyShip loadSharedAssets];
 }
 
 - (instancetype)initWithSize:(CGSize)size
@@ -64,8 +67,10 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
         self.physicsWorld.gravity = CGVectorMake(0, 0);
         self.physicsWorld.contactDelegate = self;
         _ai = [[WZSpawnAI alloc] initWithCharactor:self target:nil];
+        _ai.enemyShipsAllowed = 1;
         _activeRocks = [[NSMutableArray alloc] init];
         _inactiveRocks = [[NSMutableSet alloc] init];
+        _activeShips = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -157,6 +162,15 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
     [self addChild:rock];
 }
 
+- (void)generateEnemyShipAtPosition:(CGPoint)position
+{
+    WZEnemyShip *enemyShip = [[WZEnemyShip alloc] initWithEnemyShipType:WZEnemyShipTypeBasic atPosition:position];
+    enemyShip.ai = [[WZEnemyShipAI alloc] initWithCharactor:enemyShip target:self.spaceship];
+    [enemyShip runAction:[SKAction moveToY:self.frame.size.height - 50 duration:0.5]];
+    [self.activeShips addObject:enemyShip];
+    [self addNode:enemyShip toWorldLayer:WZGameWorldLayerCharactors];
+}
+
 - (void)update:(NSTimeInterval)currentTime
 {
     if (self.gameStarted) {
@@ -170,6 +184,10 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
         }
         [self.spaceship updatePositionWithAcceleration:self.motionManager.accelerometerData.acceleration timeSinceLastUpdate:timeSinceLast];
         [self.ai updateWithTimeSinceLastUpdate:timeSinceLast];
+        for (WZEnemyShip *enemyShip in self.activeShips) {
+            [enemyShip updateSinceLast:timeSinceLast];
+        }
+
     }
 }
 
@@ -213,6 +231,12 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
     self.scoreLabel.text = [NSString stringWithFormat:@"%ld", (long)currentScore];
 }
 
+- (void)enemyShipDestroyed:(WZEnemyShip *)enemyShip
+{
+    [self.activeShips removeObject:enemyShip];
+    self.ai.totalEnemies = MAX(0, self.ai.totalEnemies-1);
+}
+
 #pragma mark - SKPhysicsContactDelegate
 
 - (void)didBeginContact:(SKPhysicsContact *)contact
@@ -220,7 +244,19 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
     SKNode *node = contact.bodyA.node;
     if ([node isKindOfClass:[WZRock class]]) {
         [(WZRock *)node collidedWith:contact.bodyB];
+        return;
     }
+    
+    if ([node isKindOfClass:[WZEnemyShip class]]) {
+        [(WZEnemyShip *)node collidedWith:contact.bodyB];
+        return;
+    }
+    
+    if ([node isKindOfClass:[WZSpaceship class]]) {
+        [(WZSpaceship *)node collidedWith:contact.bodyB];
+        return;
+    }
+    
     
     node = contact.bodyB.node;
     if ([node isKindOfClass:[WZGameCharactor class]]) {

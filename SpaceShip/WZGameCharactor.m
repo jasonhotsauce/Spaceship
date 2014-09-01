@@ -8,7 +8,7 @@
 
 #import "WZGameCharactor.h"
 
-const CGFloat WZGameCharactorCollisionRadius = 40;
+const CGFloat WZGameCharactorCollisionRadius = 20;
 
 @implementation WZGameCharactor
 

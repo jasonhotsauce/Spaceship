@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F6C394519AEF042003244EA /* enemy_bullet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7F6C394419AEF042003244EA /* enemy_bullet.sks */; };
 		7FAA221B19933B8E00E280E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAA221A19933B8E00E280E3 /* Foundation.framework */; };
 		7FAA221D19933B8E00E280E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAA221C19933B8E00E280E3 /* CoreGraphics.framework */; };
 		7FAA221F19933B8E00E280E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAA221E19933B8E00E280E3 /* UIKit.framework */; };
@@ -38,6 +39,8 @@
 		7FB7D763199A0BE700E2B9D0 /* galaxy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 7FB7D762199A0BE700E2B9D0 /* galaxy.atlas */; };
 		7FB7D766199B3A6800E2B9D0 /* spaceship_bullet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7FB7D765199B3A6800E2B9D0 /* spaceship_bullet.sks */; };
 		7FB7D768199B498F00E2B9D0 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB7D767199B498F00E2B9D0 /* CoreMotion.framework */; };
+		7FC9578419A32FFC001F406C /* enemyship.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FC9578319A32FFC001F406C /* enemyship.png */; };
+		7FC9578719A475EF001F406C /* WZEnemyShipAI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC9578619A475EF001F406C /* WZEnemyShipAI.m */; };
 		80C14A19199751E40067AEAE /* spaceship_fire.sks in Resources */ = {isa = PBXBuildFile; fileRef = 80C14A17199751E40067AEAE /* spaceship_fire.sks */; };
 		80C14A1A199751E40067AEAE /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C14A18199751E40067AEAE /* spark.png */; };
 		80C14A1E199767D60067AEAE /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C14A1D199767D60067AEAE /* Spaceship.png */; };
@@ -56,6 +59,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7F6C394419AEF042003244EA /* enemy_bullet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = enemy_bullet.sks; sourceTree = "<group>"; };
 		7FAA221719933B8E00E280E3 /* SpaceShip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceShip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FAA221A19933B8E00E280E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7FAA221C19933B8E00E280E3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -103,6 +107,9 @@
 		7FB7D762199A0BE700E2B9D0 /* galaxy.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = galaxy.atlas; sourceTree = "<group>"; };
 		7FB7D765199B3A6800E2B9D0 /* spaceship_bullet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = spaceship_bullet.sks; sourceTree = "<group>"; };
 		7FB7D767199B498F00E2B9D0 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		7FC9578319A32FFC001F406C /* enemyship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemyship.png; sourceTree = "<group>"; };
+		7FC9578519A475EF001F406C /* WZEnemyShipAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZEnemyShipAI.h; sourceTree = "<group>"; };
+		7FC9578619A475EF001F406C /* WZEnemyShipAI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZEnemyShipAI.m; sourceTree = "<group>"; };
 		80C14A17199751E40067AEAE /* spaceship_fire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = spaceship_fire.sks; sourceTree = "<group>"; };
 		80C14A18199751E40067AEAE /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		80C14A1D199767D60067AEAE /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
@@ -204,7 +211,10 @@
 				7FACE2AC199E5E3100AF0089 /* WZArtificialIntelligence.m */,
 				7FACE2AE199E62CA00AF0089 /* WZSpawnAI.h */,
 				7FACE2AF199E62CA00AF0089 /* WZSpawnAI.m */,
+				7FC9578519A475EF001F406C /* WZEnemyShipAI.h */,
+				7FC9578619A475EF001F406C /* WZEnemyShipAI.m */,
 				80C14A1D199767D60067AEAE /* Spaceship.png */,
+				7FC9578319A32FFC001F406C /* enemyship.png */,
 				7FACE2B1199F22A900AF0089 /* rock@2x.png */,
 				7FAA223919933B8E00E280E3 /* Images.xcassets */,
 				7FAA222319933B8E00E280E3 /* Supporting Files */,
@@ -258,6 +268,7 @@
 				80C14A18199751E40067AEAE /* spark.png */,
 				7FB7D765199B3A6800E2B9D0 /* spaceship_bullet.sks */,
 				7FACE2B619A1133500AF0089 /* explosion.sks */,
+				7F6C394419AEF042003244EA /* enemy_bullet.sks */,
 			);
 			name = Particles;
 			sourceTree = "<group>";
@@ -347,8 +358,10 @@
 				7FB7D763199A0BE700E2B9D0 /* galaxy.atlas in Resources */,
 				7FACE2B2199F22A900AF0089 /* rock@2x.png in Resources */,
 				7FAA223019933B8E00E280E3 /* Main.storyboard in Resources */,
+				7F6C394519AEF042003244EA /* enemy_bullet.sks in Resources */,
 				80C14A1E199767D60067AEAE /* Spaceship.png in Resources */,
 				80C14A19199751E40067AEAE /* spaceship_fire.sks in Resources */,
+				7FC9578419A32FFC001F406C /* enemyship.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +392,7 @@
 				7FAA225B199341CE00E280E3 /* WZGameScene.m in Sources */,
 				80C14A21199E82A80067AEAE /* WZBullet.m in Sources */,
 				7FAA225819933BE200E280E3 /* WZMainMenuScene.m in Sources */,
+				7FC9578719A475EF001F406C /* WZEnemyShipAI.m in Sources */,
 				7FACE2B0199E62CA00AF0089 /* WZSpawnAI.m in Sources */,
 				7FB7D7601999EB8E00E2B9D0 /* WZParallaxNode.m in Sources */,
 				7FAA223319933B8E00E280E3 /* WZViewController.m in Sources */,

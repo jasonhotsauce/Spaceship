@@ -47,7 +47,7 @@ static const CGFloat WZMotionDecelerateSpeed = 0.4f;
 
 - (void)configureGameCharactor
 {
-    self.health = 100;
+//    self.health = 100;
     self.movingSpeed = kMinMovingSpeed;
     currentVelocity = CGPointZero;
     SKEmitterNode *fire = [[self fireEmitter] copy];
@@ -67,7 +67,7 @@ static const CGFloat WZMotionDecelerateSpeed = 0.4f;
 - (BOOL)shouldFireBullet:(NSTimeInterval)currentTimeInterval
 {
     BOOL shouldFire = NO;
-    if (currentTimeInterval - self.fireTimeInterval >= 0.5) {
+    if (currentTimeInterval - self.fireTimeInterval >= 0.5 && !self.dying) {
         shouldFire = YES;
         self.fireTimeInterval = currentTimeInterval;
     }
@@ -133,6 +133,7 @@ static const CGFloat WZMotionDecelerateSpeed = 0.4f;
 
 - (void)performDeath
 {
+    self.dying = YES;
     SKEmitterNode *explosionNode = [[self explosion] copy];
     explosionNode.position = self.position;
     explosionNode.targetNode = self.parent;

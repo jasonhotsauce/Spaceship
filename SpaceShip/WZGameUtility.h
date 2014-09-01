@@ -11,5 +11,5 @@
 @interface WZGameUtility : NSObject
 
 + (NSInteger)generateRandomNumberFrom:(NSInteger)numberA to:(NSInteger)numberB;
-
++ (CGFloat)radiusBetweenPoint:(CGPoint)pointA toPoint:(CGPoint)pointB;
 @end
