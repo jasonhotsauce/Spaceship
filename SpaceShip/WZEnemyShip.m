@@ -15,7 +15,7 @@
 @interface WZEnemyShip ()
 
 @property (nonatomic) CGFloat movingSpeed;
-@property (nonatomic) WZEnemyShipType type;
+@property (nonatomic, readwrite) WZEnemyShipType type;
 
 @end
 
@@ -46,17 +46,38 @@
     return nil;
 }
 
++ (UIColor *)colorForType:(WZEnemyShipType)type
+{
+    switch (type) {
+        case WZEnemyShipTypeBasic:
+            return [UIColor greenColor];
+            
+        case WZEnemyShipTypeFighter:
+            return [UIColor orangeColor];
+            
+        default:
+            break;
+    }
+    return nil;
+}
+
 - (instancetype)initWithEnemyShipType:(WZEnemyShipType)type atPosition:(CGPoint)position
 {
-    SKTexture *texture = [WZEnemyShip getTextureForType:type];
+//    SKTexture *texture = [WZEnemyShip getTextureForType:type];
+//    _type = type;
+//    self = [super initWithTexture:texture position:position];
+//    return self;
     _type = type;
-    self = [super initWithTexture:texture position:position];
+    self = [super initWithColor:[WZEnemyShip colorForType:type] size:CGSizeMake(50, 50)];
+    self.position = position;
+    [self configureGameCharactor];
+    [self configurePhysicsBody];
     return self;
 }
 
 - (void)configurePhysicsBody
 {
-    self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.texture.size.width/2];
+    self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.size.width/2];
     self.physicsBody.categoryBitMask = WZGameCharactorColliderTypeEnemyShip;
     self.physicsBody.collisionBitMask = WZGameCharactorColliderTypeBullet | WZGameCharactorColliderTypeSpaceship;
     self.physicsBody.contactTestBitMask = WZGameCharactorColliderTypeSpaceship | WZGameCharactorColliderTypeBullet;
@@ -64,7 +85,7 @@
 
 - (void)configureGameCharactor
 {
-    self.movingSpeed = self.type * 80;
+    self.movingSpeed = self.type * 500;
     self.enemyScore = self.type * 50;
 }
 

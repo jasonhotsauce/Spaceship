@@ -9,13 +9,15 @@
 #import "WZEnemyCharactor.h"
 
 typedef NS_ENUM(NSInteger, WZEnemyShipType) {
-    WZEnemyShipTypeBasic = 1
+    WZEnemyShipTypeBasic = 1,
+    WZEnemyShipTypeFighter
 };
 
 @class WZEnemyShipAI;
 
 @interface WZEnemyShip : WZEnemyCharactor
 @property (nonatomic, strong) WZEnemyShipAI *ai;
+@property (nonatomic, readonly) WZEnemyShipType type;
 
 - (instancetype)initWithEnemyShipType:(WZEnemyShipType)type atPosition:(CGPoint)position;
 - (void)updateSinceLast:(NSTimeInterval)timeSinceLast;

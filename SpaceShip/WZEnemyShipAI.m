@@ -41,7 +41,7 @@
     CGPoint spaceShipPosition = spaceShip.position;
     [enemyShip moveTowards:spaceShipPosition withTimeInterval:interval];
     
-    if (self.timeUntilNextFire > 0.5 ) {
+    if (self.timeUntilNextFire > 0.5 && enemyShip.type != WZEnemyShipTypeBasic) {
         [enemyShip fireToPosition:spaceShipPosition];
         self.timeUntilNextFire = 0;
     } else {

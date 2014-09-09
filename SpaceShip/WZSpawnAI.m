@@ -28,8 +28,17 @@ static const NSTimeInterval WZMaxRockPresentedTime = 3;
     // generate rock.
     self.timeUntilNextRockGeneration += interval;
     self.timeUntilNextShipGeneration += interval;
-    [self generateRocks];
-    [self generateEnemyShips];
+    [self rollDiceToGenerateEnemies];
+}
+
+- (void)rollDiceToGenerateEnemies
+{
+    NSInteger ran = 1 + arc4random() % 6;
+    if (ran % 2) {
+        [self generateRocks];
+    } else {
+        [self generateEnemyShips];
+    }
 }
 
 - (void)generateRocks

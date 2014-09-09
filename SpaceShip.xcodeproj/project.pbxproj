@@ -180,6 +180,8 @@
 		7FAA222219933B8E00E280E3 /* SpaceShip */ = {
 			isa = PBXGroup;
 			children = (
+				80813ED619B52EDF001B406B /* AI */,
+				80813ED519B52E6E001B406B /* SpriteNodes */,
 				7FB7D764199B3A3A00E2B9D0 /* Particles */,
 				7FB7D761199A0BBB00E2B9D0 /* Texture Atlases */,
 				7FAA222B19933B8E00E280E3 /* WZAppDelegate.h */,
@@ -193,26 +195,8 @@
 				7FAA225A199341CE00E280E3 /* WZGameScene.m */,
 				80C14A2219A134EF0067AEAE /* WZGameOverNode.h */,
 				80C14A2319A134EF0067AEAE /* WZGameOverNode.m */,
-				7FB7D75B1995FE3C00E2B9D0 /* WZGameCharactor.h */,
-				7FB7D75C1995FE3C00E2B9D0 /* WZGameCharactor.m */,
-				7FB7D7551995FB6400E2B9D0 /* WZSpaceship.h */,
-				7FB7D7561995FB6400E2B9D0 /* WZSpaceship.m */,
-				7FACE2B319A1121400AF0089 /* WZEnemyCharactor.h */,
-				7FACE2B419A1121400AF0089 /* WZEnemyCharactor.m */,
-				7FACE2A5199DE1AB00AF0089 /* WZRock.h */,
-				7FACE2A6199DE1AB00AF0089 /* WZRock.m */,
-				7FACE2A8199DE1DA00AF0089 /* WZEnemyShip.h */,
-				7FACE2A9199DE1DA00AF0089 /* WZEnemyShip.m */,
-				80C14A1F199E82A80067AEAE /* WZBullet.h */,
-				80C14A20199E82A80067AEAE /* WZBullet.m */,
 				7FB7D7581995FD5600E2B9D0 /* WZGameUtility.h */,
 				7FB7D7591995FD5600E2B9D0 /* WZGameUtility.m */,
-				7FACE2AB199E5E3100AF0089 /* WZArtificialIntelligence.h */,
-				7FACE2AC199E5E3100AF0089 /* WZArtificialIntelligence.m */,
-				7FACE2AE199E62CA00AF0089 /* WZSpawnAI.h */,
-				7FACE2AF199E62CA00AF0089 /* WZSpawnAI.m */,
-				7FC9578519A475EF001F406C /* WZEnemyShipAI.h */,
-				7FC9578619A475EF001F406C /* WZEnemyShipAI.m */,
 				80C14A1D199767D60067AEAE /* Spaceship.png */,
 				7FC9578319A32FFC001F406C /* enemyship.png */,
 				7FACE2B1199F22A900AF0089 /* rock@2x.png */,
@@ -271,6 +255,38 @@
 				7F6C394419AEF042003244EA /* enemy_bullet.sks */,
 			);
 			name = Particles;
+			sourceTree = "<group>";
+		};
+		80813ED519B52E6E001B406B /* SpriteNodes */ = {
+			isa = PBXGroup;
+			children = (
+				7FACE2B319A1121400AF0089 /* WZEnemyCharactor.h */,
+				7FACE2B419A1121400AF0089 /* WZEnemyCharactor.m */,
+				7FB7D75B1995FE3C00E2B9D0 /* WZGameCharactor.h */,
+				7FB7D75C1995FE3C00E2B9D0 /* WZGameCharactor.m */,
+				7FB7D7551995FB6400E2B9D0 /* WZSpaceship.h */,
+				7FB7D7561995FB6400E2B9D0 /* WZSpaceship.m */,
+				7FACE2A5199DE1AB00AF0089 /* WZRock.h */,
+				7FACE2A6199DE1AB00AF0089 /* WZRock.m */,
+				7FACE2A8199DE1DA00AF0089 /* WZEnemyShip.h */,
+				7FACE2A9199DE1DA00AF0089 /* WZEnemyShip.m */,
+				80C14A1F199E82A80067AEAE /* WZBullet.h */,
+				80C14A20199E82A80067AEAE /* WZBullet.m */,
+			);
+			name = SpriteNodes;
+			sourceTree = "<group>";
+		};
+		80813ED619B52EDF001B406B /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				7FACE2AB199E5E3100AF0089 /* WZArtificialIntelligence.h */,
+				7FACE2AC199E5E3100AF0089 /* WZArtificialIntelligence.m */,
+				7FACE2AE199E62CA00AF0089 /* WZSpawnAI.h */,
+				7FACE2AF199E62CA00AF0089 /* WZSpawnAI.m */,
+				7FC9578519A475EF001F406C /* WZEnemyShipAI.h */,
+				7FC9578619A475EF001F406C /* WZEnemyShipAI.m */,
+			);
+			name = AI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

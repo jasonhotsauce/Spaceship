@@ -31,6 +31,7 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
 @property (nonatomic, strong) NSMutableArray *activeShips;
 @property (nonatomic, strong) WZSpawnAI *ai;
 @property (nonatomic, strong) SKLabelNode *scoreLabel;
+@property double score;
 @end
 
 @implementation WZGameScene
@@ -114,6 +115,8 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
     self.scoreLabel.text = @"0";
     self.scoreLabel.name = @"score";
     [self addNode:self.scoreLabel toWorldLayer:WZGameWorldLayerStatusLabel];
+    
+    [self addObserver:self forKeyPath:@"score" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (void)configureWorldLayer
@@ -224,11 +227,10 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
     [layerNode addChild:node];
 }
 
-- (void)addScoreToPlayer:(NSInteger)score
+- (void)addScoreToPlayer:(long)earnedScore
 {
-    NSInteger currentScore = [self.scoreLabel.text integerValue];
-    currentScore += score;
-    self.scoreLabel.text = [NSString stringWithFormat:@"%ld", (long)currentScore];
+    self.score += earnedScore;
+    self.scoreLabel.text = [NSString stringWithFormat:@"%ld", (long)self.score];
 }
 
 - (void)enemyShipDestroyed:(WZEnemyShip *)enemyShip
@@ -264,6 +266,16 @@ static const CGSize worldSize = (CGSize){.width = 1920, .height = 1200};
     }
     
     
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString: @"score"]) {
+        double newScore = [change[NSKeyValueChangeNewKey] doubleValue];
+        if (newScore > 2000) {
+            
+        }
+    }
 }
 
 static NSArray *backgroundTiles = nil;
